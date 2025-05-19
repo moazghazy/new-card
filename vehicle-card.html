@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>نظام بطاقات التشغيل - التفاصيل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1a365d;
+            --secondary-blue: #2d5186;
+            --text-dark: #2d3748;
+            --text-gray: #718096;
+        }
+
+        body {
+            background: #f7fafc;
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 15px;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        h1 {
+            color: var(--primary-blue);
+            font-size: 2rem;
+            text-align: center;
+            margin: 0 0 2rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 3px solid #e2e8f0;
+        }
+
+        .section-title {
+            color: var(--secondary-blue);
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 1.2rem 0;
+            padding: 0 1rem;
+        }
+
+        .data-label {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            width: 45%;
+            font-weight: 500;
+        }
+
+        .data-value {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            width: 50%;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .divider {
+            border-top: 2px solid #e2e8f0;
+            margin: 2rem 0;
+        }
+
+        .back-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            margin-top: 2.5rem;
+            background: var(--primary-blue);
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+
+            .data-row {
+                flex-direction: column;
+            }
+
+            .data-label,
+            .data-value {
+                width: 100%;
+            }
+
+            .data-label {
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>بطاقة تشغيل المركبة</h1>
+
+        <!-- بيانات المنشأة -->
+        <div class="section-title">بيانات المنشأة/الفرد</div>
+        <div class="data-row">
+            <div class="data-label">الاسم التجاري</div>
+            <div class="data-value" id="company"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- معلومات الترخيص -->
+        <div class="section-title">معلومات الترخيص</div>
+        <div class="data-row">
+            <div class="data-label">رقم الترخيص</div>
+            <div class="data-value" id="license"></div>
+        </div>
+        <div class="data-row">
+            <div class="data-label">نوع النشاط</div>
+            <div class="data-value" id="license_type"></div>
+        </div>
+        <div class="data-row">
+            <div class="data-label">المحافظة</div>
+            <div class="data-value" id="city"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- بيانات البطاقة -->
+        <div class="section-title">بيانات بطاقة التشغيل</div>
+        <div class="data-row">
+            <div class="data-label">رقم البطاقة</div>
+            <div class="data-value" id="card_number"></div>
+        </div>
+        <div class="data-row">
+            <div class="data-label">نوع البطاقة</div>
+            <div class="data-value" id="card_type"></div>
+        </div>
+        <div class="data-row">
+            <div class="data-label">تاريخ الإصدار</div>
+            <div class="data-value" id="issue_date"></div>
+        </div>
+        <div class="data-row">
+            <div class="data-label">تاريخ الانتهاء</div>
+            <div class="data-value" id="expiry_date"></div>
+        </div>
+        <div class="data-row">
+            <div class="data-label">آخر تجديد</div>
+            <div class="data-value" id="renewal_date"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- معلومات المركبة -->
+        <div class="section-title">مواصفات المركبة</div>
+        <div class="data-row">
+            <div class="data-label">الطراز/الموديل</div>
+            <div class="data-value" id="vehicle"></div>
+        </div>
+        <div class="data-row">
+            <div class="data-label">رقم اللوحة</div>
+            <div class="data-value" id="plate"></div>
+        </div>
+        <div class="data-row">
+            <div class="data-label">سنة الصنع</div>
+            <div class="data-value" id="year"></div>
+        </div>
+        <div class="data-row">
+            <div class="data-label">لون المركبة</div>
+            <div class="data-value" id="color"></div>
+        </div>
+        <div class="data-row">
+            <div class="data-label">الرقم التسلسلي</div>
+            <div class="data-value" id="serial"></div>
+        </div>
+
+        <button class="back-btn">العودة للقائمة الرئيسية</button>
+    </div>
+
+    <script>
+        // قاعدة بيانات البطاقات
+        const vehicleCards = {
+            // بيانات البطاقات المقدمة
+            "7369": {plate: "AYHM", vehicle: "AYHM AY150-A", year: "2025", color: "احمر"},
+            "7500": {plate: "AYHM", vehicle: "AYHM AY150-A", year: "2025", color: "احمر"},
+            "7482": {plate: "AYHM", vehicle: "AYHM AY150-A", year: "2025", color: "احمر"},
+            "7496": {plate: "AYHM", vehicle: "AYHM AY150-A", year: "2025", color: "احمر"},
+            "7479": {plate: "AYHM", vehicle: "AYHM AY150-A", year: "2025", color: "احمر"},
+            "7372": {plate: "AYHM", vehicle: "AYHM AY150-A", year: "2025", color: "احمر"},
+            // ... جميع البيانات المتبقية بنفس الهيكل ...
+            "7362": {plate: "AYHM", vehicle: "AYHM AY150-A", year: "2025", color: "احمر"}
+        };
+
+        // معالجة البارامترات
+        function loadCardData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cardId = urlParams.get('id');
+            
+            if (!cardId || !vehicleCards[cardId]) {
+                showError();
+                return;
+            }
+
+            // تعبئة بيانات المركبة
+            document.getElementById('card_number').textContent = cardId;
+            document.getElementById('plate').textContent = `ط ب ${vehicleCards[cardId].plate} ${cardId.slice(-4)}`;
+            document.getElementById('vehicle').textContent = vehicleCards[cardId].vehicle;
+            document.getElementById('year').textContent = vehicleCards[cardId].year;
+            document.getElementById('color').textContent = vehicleCards[cardId].color;
+
+            // تعبئة البيانات العامة
+            const fillData = (field) => {
+                const value = urlParams.get(field) || 'غير متوفر';
+                document.getElementById(field).textContent = value;
+            };
+
+            ['company', 'license', 'license_type', 'city', 'card_type',
+             'issue_date', 'expiry_date', 'renewal_date', 'serial'].forEach(fillData);
+        }
+
+        function showError() {
+            alert('عذراً، البطاقة المطلوبة غير مسجلة في النظام');
+            document.querySelector('.container').innerHTML = '<h2 style="color:red; text-align:center">البطاقة غير موجودة</h2>';
+        }
+
+        // إعداد زر الرجوع
+        document.querySelector('.back-btn').addEventListener('click', () => {
+            window.history.length > 1 
+                ? window.history.back() 
+                : window.location.href = '/';
+        });
+
+        // تشغيل النظام عند التحميل
+        window.addEventListener('DOMContentLoaded', loadCardData);
+    </script>
+</body>
+</html>
